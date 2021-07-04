@@ -20,3 +20,16 @@ after_sucess:
   - docker push wendelluiz/multi-nginx
   - docker push wendelluiz/multi-server
   - docker push wendelluiz/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: Multidocker-env
+  bucket_name: elasticbeanstalk-us-east-2-539255213441
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
